@@ -1,0 +1,77 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Compte</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="segment" value="Log-in">
+      <ion-segment-button value="Sign-up">
+        <ion-label>Création</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Log-in">
+        <ion-label>Connexion</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [ngSwitch]="segment">
+  <ion-card *ngSwitchCase="'Log-in'">
+    <ion-item lines="full">
+      <ion-label position="floating">Courriel</ion-label>
+      <ion-input type="text" #email required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Mot de passe</ion-label>
+      <ion-input type="password" #password required></ion-input>
+    </ion-item>
+
+    <ion-row>
+      <ion-col>
+        <ion-button
+          type="submit"
+          (click)="login(email, password)"
+          expand="block"
+          >Se connecter</ion-button
+        >
+        <a [routerLink]="['/forgot-password']" class="small-text"
+          >Mot de passe oublié?</a
+        >
+      </ion-col>
+    </ion-row>
+  </ion-card>
+  <form>
+    <ion-card *ngSwitchCase="'Sign-up'">
+      <ion-item lines="full">
+        <ion-label position="floating">Prénom</ion-label>
+        <ion-input type="text" required></ion-input>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-label position="floating">Nom</ion-label>
+        <ion-input type="text" required></ion-input>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-label position="floating">Courriel</ion-label>
+        <ion-input type="text" #email required></ion-input>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-label position="floating">Mot de passe</ion-label>
+        <ion-input type="password" #password required></ion-input>
+      </ion-item>
+
+      <ion-row>
+        <ion-col>
+          <ion-button
+            (click)="register(email, password)"
+            type="submit"
+            expand="block"
+            >Création de compte</ion-button
+          >
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </form>
+</ion-content>

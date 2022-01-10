@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "cpa-5723": {
+      "hosting": {
+        "app": [
+          "cpa-5723"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "cpa-5723"
+  }
+}

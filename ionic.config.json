@@ -1,0 +1,7 @@
+{
+  "name": "CPA_5723",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
