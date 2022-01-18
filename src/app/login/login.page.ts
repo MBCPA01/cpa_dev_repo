@@ -2,9 +2,9 @@ import { Component, Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import * as firebase from 'firebase/auth';
 import { ToastController } from '@ionic/angular';
-import {ActivatedRoute, Router} from '@angular/router';
-import {FirebaseService} from '../../services/firebase/firebase.service';
-
+import { ActivatedRoute, Router } from '@angular/router';
+import { FirebaseService } from '../../services/firebase/firebase.service';
+import { UserSignIn } from '../../models/user';
 
 @Component({
   selector: 'app-login',
@@ -18,24 +18,20 @@ export class LoginPage {
   segment = 'Log-in';
   firebaseLogin: any;
   auth: any;
-  dataExample: {[id: string]: string}= {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    name: '',
-    town: '',
-    phoneNumber: ''
-  };
+  error: any;
 
   constructor(
     public toastController: ToastController,
-    private router: Router, private route: ActivatedRoute,
+    private router: Router,
+    private route: ActivatedRoute,
     private firebaseSrv: FirebaseService
   ) {
     //this.firebaseSrv.setSimpleCollectionByPath('News', this.dataExample);
     //console.log(this.firebaseSrv.getDataByPath('test'));
   }
 
-  register(email, password) {
-    this.presentToastWhenSignIn(email, password);
+  register(email, password, displayName) {
+    this.presentToastWhenSignIn(email, password, displayName);
   }
 
   login(email, password) {
@@ -43,8 +39,9 @@ export class LoginPage {
     this.firebaseLogin = firebase
       .signInWithEmailAndPassword(this.auth, email.value, password.value)
       .then((res) => {
+        console.log(res);
         if (this.auth.currentUser.emailVerified) {
-          this.router.navigate([`/dashboard-tab`]);
+          this.router.navigate([`dashboard-tab`]);
           console.log('logged in');
         } else {
           console.log(this.auth);
@@ -96,7 +93,7 @@ export class LoginPage {
     console.log('onDidDismiss resolved with role', role);
   }
 
-  async presentToastWhenSignIn(email, password) {
+  async presentToastWhenSignIn(email, password, displayName) {
     const toast = await this.toastController.create({
       header: 'Création de compte',
       message:
@@ -117,15 +114,20 @@ export class LoginPage {
               )
               .then((userCredential) => {
                 // Signed in
+                firebase
+                  .updateProfile(this.auth, {
+                    displayName: displayName.value,
+                    photoURL: '',
+                  })
+                  .catch((err) => {
+                    this.error = err;
+                  });
                 const user = userCredential.user;
                 console.log(user);
-
                 this.sendEmailVerification = firebase
                   .sendEmailVerification(firebase.getAuth().currentUser)
                   .then((res) => {
-                    window.alert(
-                      'Confirmation de l\'envoie du courriel'
-                    );
+                    window.alert('Confirmation de l\'envoie du courriel');
                   })
                   .catch((error) => {
                     window.alert(error.message);

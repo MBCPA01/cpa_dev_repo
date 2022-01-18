@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Dashboard</ion-title>
+    <ion-title>Dashboard: {{this.user.displayName}}</ion-title>
 
     <!-- Hamburger -->
     <ion-buttons slot="start">
@@ -10,7 +10,72 @@
 </ion-header>
 
 <ion-content>
-  <!-- Content -->
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card
+          ><ion-card-header> Alarmes </ion-card-header>
+          <ion-card-content>
+            <ion-icon name="alert-outline"></ion-icon>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card
+          ><ion-card-header>Données connectées</ion-card-header>
+          <ion-card-content>
+            <ion-icon name="reader-outline"></ion-icon> </ion-card-content
+        ></ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card
+          ><ion-card-header>Rendement</ion-card-header>
+          <ion-card-content
+            ><ion-icon name="flash-outline"></ion-icon> </ion-card-content
+        ></ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card
+          ><ion-card-header>Recommandations</ion-card-header>
+          <ion-card-content
+            ><ion-icon name="thumbs-up-outline"></ion-icon></ion-card-content
+        ></ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-header> Bar Chart </ion-card-header>
+          <ion-card-content>
+            <canvas
+              #barCanvas
+              style="position: relative; height: 60vh; width: 40vw"
+            ></canvas>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card>
+          <ion-card-header> Pie Chart </ion-card-header>
+          <ion-card-content>
+            <canvas
+              #doughnutCanvas
+              style="position: relative; height: 60vh; width: 40vw"
+            ></canvas>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card>
+          <ion-card-header> Line Chart </ion-card-header>
+          <ion-card-content>
+            <canvas
+              #lineCanvas
+              style="position: relative; height: 60vh; width: 40vw"
+            ></canvas>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
-
-

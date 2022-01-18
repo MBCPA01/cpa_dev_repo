@@ -53,6 +53,11 @@
       </ion-item>
 
       <ion-item lines="full">
+        <ion-label position="floating">Nom d'utilisateur</ion-label>
+        <ion-input type="text" #displayName required></ion-input>
+      </ion-item>
+
+      <ion-item lines="full">
         <ion-label position="floating">Courriel</ion-label>
         <ion-input type="text" #email required></ion-input>
       </ion-item>
@@ -65,7 +70,7 @@
       <ion-row>
         <ion-col>
           <ion-button
-            (click)="register(email, password)"
+            (click)="register(email, password, displayName)"
             type="submit"
             expand="block"
             >Création de compte</ion-button

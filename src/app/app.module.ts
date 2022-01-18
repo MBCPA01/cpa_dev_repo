@@ -14,7 +14,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 import { ChartsModule } from 'ng2-charts';
 import { provideAnalytics,getAnalytics,ScreenTrackingService,UserTrackingService } from '@angular/fire/analytics';
-import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideAuth,getAuth, onAuthStateChanged } from '@angular/fire/auth';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideFunctions,getFunctions } from '@angular/fire/functions';
 import { provideMessaging,getMessaging } from '@angular/fire/messaging';

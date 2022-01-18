@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ProfileEditPageRoutingModule } from './profile-edit-routing.module';
 
 import { ProfileEditPage } from './profile-edit.page';
+import { ProfileEditResolver } from './profile-edit.resolver';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { ProfileEditPage } from './profile-edit.page';
     IonicModule,
     ProfileEditPageRoutingModule
   ],
-  declarations: [ProfileEditPage]
+  declarations: [ProfileEditPage],
+  providers: [ProfileEditResolver]
 })
 export class ProfileEditPageModule {}

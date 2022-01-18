@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterEvent } from '@angular/router';
+import { FirebaseService } from '../../services/firebase/firebase.service';
 
 @Component({
   selector: 'app-dashboard-tab',
@@ -16,10 +17,12 @@ export class DashboardTabPage implements OnInit {
       link: '/dashboard-tab/profile-edit',
       icon: 'person-circle',
       position: 'start',
+      action: '',
     },
+  ];
+  compte = [
     {
       name: 'Déconnexion',
-      link: '',
       icon: 'log-out',
       position: 'start',
     },
@@ -55,11 +58,16 @@ export class DashboardTabPage implements OnInit {
     },
   ];
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private firebaseSrv: FirebaseService) {
     this.router.events.subscribe((event: RouterEvent) => {
       console.log(event.url);
       this.active = event.url;
     });
+  }
+
+  logoutAction() {
+    console.log('in logout');
+    this.firebaseSrv.signOutUser();
   }
 
   ngOnInit() {}
