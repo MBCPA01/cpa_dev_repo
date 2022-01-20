@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { DashboardTabPage } from './dashboard-tab.page';
 
 const routes: Routes = [
@@ -39,6 +38,10 @@ const routes: Routes = [
       {
         path: 'info',
         loadChildren: () => import('../info/info.module').then((m) => m.InfoPageModule),
+      },
+      {
+        path: 'formulaire',
+        loadChildren: () => import('../formulaire/formulaire.module').then( m => m.FormulairePageModule)
       },
       {
         path: '',

@@ -21,7 +21,7 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home-tab',
     pathMatch: 'full',
-  }
+  },
 ];
 
 @NgModule({
